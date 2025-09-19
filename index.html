@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personalized Trip Planner</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f5f7fa; color: #333; }
+    header { background: #4CAF50; color: white; padding: 20px; text-align: center; }
+    main { padding: 20px; max-width: 700px; margin: auto; }
+    .card { background: white; padding: 20px; margin-bottom: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    input, select, button { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; }
+    button { background: #4CAF50; color: white; border: none; cursor: pointer; }
+    button:hover { background: #45a049; }
+    .itinerary { margin-top: 15px; padding: 15px; background: #eef7ee; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Personalized Trip Planner</h1>
+    <p>Plan your perfect journey in minutes</p>
+  </header>
+
+  <main>
+    <div class="card">
+      <h2>Enter Your Travel Preferences</h2>
+      <form id="tripForm">
+        <label>Destination Type:</label>
+        <select id="destination">
+          <option value="beach">Beach</option>
+          <option value="mountain">Mountain</option>
+          <option value="city">City</option>
+        </select>
+
+        <label>Budget:</label>
+        <select id="budget">
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+
+        <label>Number of Days:</label>
+        <input type="number" id="days" placeholder="Enter number of days" required>
+
+        <button type="submit">Generate Itinerary</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <h2>Your Suggested Itinerary</h2>
+      <div id="itineraryOutput" class="itinerary">Fill in your details to see a plan...</div>
+    </div>
+  </main>
+
+  <script>
+    document.getElementById("tripForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const destination = document.getElementById("destination").value;
+      const budget = document.getElementById("budget").value;
+      const days = document.getElementById("days").value;
+
+      let itinerary = "";
+
+      if(destination === "beach") {
+        itinerary += `Relaxing ${days}-day beach holiday with water sports, seafood dining, and sunset views.`;
+      } else if(destination === "mountain") {
+        itinerary += `Adventure-filled ${days}-day mountain trip with trekking, camping, and local exploration.`;
+      } else {
+        itinerary += `Exciting ${days}-day city tour with sightseeing, shopping, and cultural experiences.`;
+      }
+
+      if(budget === "low") {
+        itinerary += " Budget-friendly stays and local transport included.";
+      } else if(budget === "medium") {
+        itinerary += " Comfortable mid-range hotels and guided tours included.";
+      } else {
+        itinerary += " Premium hotels, private transfers, and exclusive experiences included.";
+      }
+
+      document.getElementById("itineraryOutput").innerText = itinerary;
+    });
+  </script>
+</body>
+</html>
